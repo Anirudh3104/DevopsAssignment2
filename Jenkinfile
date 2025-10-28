@@ -3,13 +3,13 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        IMAGE_NAME = "your_dockerhub_username/ticket-booking-app"
+        IMAGE_NAME = "anirudh3104/ticket-booking-app"
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/<yourusername>/ticket-booking-app.git'
+                git branch: 'main', url: 'https://github.com/Anirudh3104/DevopsAssignment2.git'
             }
         }
 
