@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        IMAGE_NAME = "anirudh3104/ticket-booking-app"
+        IMAGE_NAME = "anirudxb31/ticket-booking-app"
     }
 
     stages {
