@@ -2,32 +2,52 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        IMAGE_NAME = "your_dockerhub_username/ticket-booking-app"
+        // Use the ID of your Jenkins credentials
+        DOCKERHUB_CREDENTIALS = credentials('e75961e1-90b3-4c28-b894-d5e28f50d3b7')
+        IMAGE_NAME = "anirudxb31/ticket-booking-app"
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/<yourusername>/ticket-booking-app.git'
+                git branch: 'main', url: 'https://github.com/Anirudh3104/DevopsAssignment2.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh 'echo "🛠 Building Docker Image..."'
                     sh 'docker build -t $IMAGE_NAME:latest .'
                 }
             }
         }
 
-        stage('Push to Docker Hub') {
+        stage('Login to Docker Hub') {
             steps {
                 script {
+                    sh 'echo "🔑 Logging in to Docker Hub..."'
                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                }
+            }
+        }
+
+        stage('Push Image to Docker Hub') {
+            steps {
+                script {
+                    sh 'echo "🚀 Pushing Image to Docker Hub..."'
                     sh 'docker push $IMAGE_NAME:latest'
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Build and push successful! Image: $IMAGE_NAME:latest"
+        }
+        failure {
+            echo "❌ Build or push failed. Check logs for details."
         }
     }
 }
