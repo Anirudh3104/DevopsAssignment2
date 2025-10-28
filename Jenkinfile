@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        // Use your actual Jenkins credentials ID here
+        DOCKERHUB_CREDENTIALS = credentials('e75961e1-90b3-4c28-b894-d5e28f50d3b7')
         IMAGE_NAME = "anirudxb31/ticket-booking-app"
     }
 
@@ -24,7 +25,10 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
+                    // Login to Docker Hub using stored credentials
                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                    
+                    // Push the Docker image to Docker Hub
                     sh 'docker push $IMAGE_NAME:latest'
                 }
             }
