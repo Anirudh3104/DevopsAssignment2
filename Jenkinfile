@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // Use your actual Jenkins credentials ID here
+        // Use the ID of your Jenkins credentials
         DOCKERHUB_CREDENTIALS = credentials('e75961e1-90b3-4c28-b894-d5e28f50d3b7')
         IMAGE_NAME = "anirudxb31/ticket-booking-app"
     }
@@ -17,21 +17,37 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh 'echo "🛠 Building Docker Image..."'
                     sh 'docker build -t $IMAGE_NAME:latest .'
                 }
             }
         }
 
-        stage('Push to Docker Hub') {
+        stage('Login to Docker Hub') {
             steps {
                 script {
-                    // Login to Docker Hub using stored credentials
+                    sh 'echo "🔑 Logging in to Docker Hub..."'
                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                    
-                    // Push the Docker image to Docker Hub
+                }
+            }
+        }
+
+        stage('Push Image to Docker Hub') {
+            steps {
+                script {
+                    sh 'echo "🚀 Pushing Image to Docker Hub..."'
                     sh 'docker push $IMAGE_NAME:latest'
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Build and push successful! Image: $IMAGE_NAME:latest"
+        }
+        failure {
+            echo "❌ Build or push failed. Check logs for details."
         }
     }
 }
