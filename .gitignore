@@ -1,0 +1,124 @@
+# ===============================
+# Python / Streamlit Application
+# ===============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# Streamlit cache and logs
+.streamlit/
+.streamlit/secrets.toml
+.streamlit/config.toml
+# (optional) remove if you store them in env vars
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+.env/
+env.bak/
+venv.bak/
+Scripts/
+Include/
+Lib/
+pyvenv.cfg
+
+# Environment and config files
+.env
+.env.local
+.env.production
+.env.development
+config.yaml
+settings.yaml
+
+# ===============================
+# IDE / Editor Specific
+# ===============================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter / IPython notebooks
+.ipynb_checkpoints/
+
+# ===============================
+# Logs and temp data
+# ===============================
+*.log
+logs/
+tmp/
+temp/
+__temp__/
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Docker Related
+# ===============================
+Dockerfile~
+docker-compose.yml~
+docker-compose.override.yml
+*.pid
+*.tar
+*.lock
+
+# Ignore local docker volumes or images
+.docker/
+.dockerignore
+docker-volume/
+docker-cache/
+
+# ===============================
+# Jenkins CI/CD files
+# ===============================
+# Ignore Jenkins workspace or secrets if run locally
+jenkins_home/
+jenkins.log
+secrets/
+credentials.xml
+*.bak
+
+# ===============================
+# Kubernetes Deployment
+# ===============================
+# Ignore temporary or generated manifest backups
+*.yaml~
+*.yml~
+k8s-generated/
+*.kubeconfig
+.kube/
+
+# ===============================
+# Miscellaneous
+# ===============================
+coverage/
+*.coverage
+.pytest_cache/
+.mypy_cache/
+.tox/
+.nox/
+cache/
+__results__/
+reports/
+*.csv
+*.json
+
+# ===============================
+# Node / Frontend (if you add UI later)
+# ===============================
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
