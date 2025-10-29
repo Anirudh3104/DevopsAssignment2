@@ -8,6 +8,6 @@ spec:
   type: NodePort
   ports:
     - protocol: TCP
-      port: 8020
-      targetPort: 8020
+      port: 8501
+      targetPort: 8501
       nodePort: 30007
